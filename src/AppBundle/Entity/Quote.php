@@ -191,7 +191,7 @@ class Quote implements EntityInterface
     /**
      * @var float
      *
-     * @ORM\Column(name="change", type="float")
+     * @ORM\Column(name="`change`", type="float")
      */
     private $change;
     /**
@@ -213,21 +213,21 @@ class Quote implements EntityInterface
      */
     private $qty;
     /**
-     * @var DateTime
+     * @var string
      *
-     * @ORM\Column(name="time", type="time")
+     * @ORM\Column(name="time", type="string")
      */
     private $time;
     /**
-     * @var integer
+     * @var bigint
      *
-     * @ORM\Column(name="vol_today", type="integer")
+     * @ORM\Column(name="vol_today", type="bigint")
      */
     private $volToday;
     /**
-     * @var integer
+     * @var bigint
      *
-     * @ORM\Column(name="val_today", type="integer")
+     * @ORM\Column(name="val_today", type="bigint")
      */
     private $valToday;
     /**
@@ -363,9 +363,9 @@ class Quote implements EntityInterface
      */
     private $openPeriodPrice;
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="update_time", type="float")
+     * @ORM\Column(name="update_time", type="string")
      */
     private $updateTime;
     /**
@@ -772,7 +772,7 @@ class Quote implements EntityInterface
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
     public function getTime()
     {
@@ -780,7 +780,7 @@ class Quote implements EntityInterface
     }
 
     /**
-     * @param DateTime $time
+     * @param string $time
      */
     public function setTime($time)
     {
@@ -1172,7 +1172,7 @@ class Quote implements EntityInterface
     }
 
     /**
-     * @return float
+     * @return string
      */
     public function getUpdateTime()
     {
@@ -1180,7 +1180,7 @@ class Quote implements EntityInterface
     }
 
     /**
-     * @param float $updateTime
+     * @param string $updateTime
      */
     public function setUpdateTime($updateTime)
     {
@@ -1248,7 +1248,7 @@ class Quote implements EntityInterface
      */
     public function setSystime($systime)
     {
-        $this->systime = $systime;
+        $this->systime = new \DateTime($systime);
     }
 
     /**

@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class AppParseSharesCommand extends ContainerAwareCommand
 {
@@ -44,10 +45,10 @@ class AppParseSharesCommand extends ContainerAwareCommand
                     if (in_array($method, $_classMethods)) {
                         $quote->$method((string) $rowAttributes[0]);
                     }
-                    $em->persist($quote);
                 }
+                $em->persist($quote);
+                $em->flush();
             }
-            $em->flush();
         } else {
             $output->writeln(sprintf('<comment>No quotes in the file "%s".</comment>', $filename));
         }
