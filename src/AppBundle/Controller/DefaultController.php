@@ -13,9 +13,30 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
+
+        $em    = $this->get('doctrine.orm.entity_manager');
+        $dql   = "SELECT a FROM AppBundle:Quote a";
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        // parameters to template
+        return $this->render('default/index.html.twig', array(
+            'pagination' => $pagination,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        ));
+
+
+
+
+        // replace this example code with whatever you need
+//        return $this->render('default/index.html.twig', [
+//            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+//        ]);
     }
 }
