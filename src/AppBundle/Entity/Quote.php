@@ -15,6 +15,62 @@ use Symfony\Component\Validator\Constraints\DateTime;
  */
 class Quote implements EntityInterface
 {
+	public static $according = [
+			'SECNAME' => 'secName',
+			'SHORTNAME' => 'shortName',
+			'LATNAME' => 'latName',
+			'DECIMALS' => 'decimals',
+			'PREVPRICE' => 'prevPrice',
+			'BOARDID' => 'boardId',
+			'SECID' => 'secId',
+			'STATUS' => 'status',
+			'BID' => 'bid',
+			'BIDDEPTH' => 'bidDepth',
+			'BIDDEPTHT' => 'bidDeptht',
+			'NUMBIDS' => 'numBids',
+			'OFFER' => 'offer',
+			'OFFERDEPTH' => 'offerDepth',
+			'OFFERDEPTHT' => 'offerDeptht',
+			'NUMOFFERS' => 'numOffers',
+			'OPEN' => 'open',
+			'HIGH' => 'high',
+			'LOW' => 'low',
+			'LAST' => 'last',
+			'CHANGE' => 'change',
+			'LASTCHANGEPRCNT' => 'lastChangePrcnt',
+			'LASTTOPREVPRICE' => 'lastToPrevPrice',
+			'QTY' => 'qty',
+			'TIME' => 'time',
+			'VOLTODAY' => 'volToday',
+			'VALTODAY' => 'valToday',
+			'VALTODAY_USD' => 'valTodayUsd',
+			'TRADINGSTATUS' => 'tradingStatus',
+			'VALUE' => 'value',
+			'VALUE_USD' => 'valueUsd',
+			'WAPRICE' => 'waPrice',
+			'WAPTOPREVWAPRICEPRCNT' => 'wapToPrevWaPricePrcnt',
+			'WAPTOPREVWAPRICE' => 'wapToPrevWaPrice',
+			'HIGHBID' => 'highBid',
+			'LOWOFFER' => 'lowOffer',
+			'NUMTRADES' => 'numTrades',
+			'PRICEMINUSPREVWAPRICE' => 'priceMinusPrevWaPrice',
+			'CLOSEPRICE' => 'closePrice',
+			'LASTBID' => 'lastBid',
+			'LASTOFFER' => 'lastOffer',
+			'MARKETPRICE' => 'marketPrice',
+			'MARKETPRICETODAY' => 'marketPriceToday',
+			'LOPENPRICE' => 'lOpenPrice',
+			'LCURRENTPRICE' => 'lCurrentPrice',
+			'LCLOSEPRICE' => 'lClosePrice',
+			'MARKETPRICE2' => 'marketPrice2',
+			'ADMITTEDQUOTE' => 'admittedQuote',
+			'OPENPERIODPRICE' => 'openPeriodPrice',
+			'UPDATETIME' => 'updateTime',
+			'SEQNUM' => 'seqNum',
+			'SPREAD' => 'spread',
+			'LASTCHANGE' => 'lastChange',
+			'SYSTIME' => 'systime'
+		];
     /**
      * @var int
      *
@@ -257,7 +313,7 @@ class Quote implements EntityInterface
      *
      * @ORM\Column(name="last_offer", type="float")
      */
-    private $last_offer;
+    private $lastOffer;
     /**
      * @var float
      *
@@ -329,7 +385,7 @@ class Quote implements EntityInterface
      *
      * @ORM\Column(name="last_change", type="float")
      */
-    private $last_change;
+    private $lastChange;
     /**
      * @var DateTime
      *
@@ -976,15 +1032,15 @@ class Quote implements EntityInterface
      */
     public function getLastOffer()
     {
-        return $this->last_offer;
+        return $this->lastOffer;
     }
 
     /**
-     * @param float $last_offer
+     * @param float $lastOffer
      */
-    public function setLastOffer($last_offer)
+    public function setLastOffer($lastOffer)
     {
-        $this->last_offer = $last_offer;
+        $this->lastOffer = $lastOffer;
     }
 
     /**
@@ -1168,15 +1224,15 @@ class Quote implements EntityInterface
      */
     public function getLastChange()
     {
-        return $this->last_change;
+        return $this->lastChange;
     }
 
     /**
-     * @param float $last_change
+     * @param float $lastChange
      */
-    public function setLastChange($last_change)
+    public function setLastChange($lastChange)
     {
-        $this->last_change = $last_change;
+        $this->lastChange = $lastChange;
     }
 
     /**
