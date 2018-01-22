@@ -25,22 +25,23 @@ class AppParseSharesCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $argument = $input->getArgument('argument');
         /** @var EntityManager $em */
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
 
-//        if ($input->getOption('option')) {
         $uploadPath = $this->getContainer()->get('kernel')->getRootDir() . '/../web/upload';
         $filename = $uploadPath . '/mmvb.xml';
         $dataMoex = file_get_contents($filename);
-//        }
 
         $result = new \SimpleXMLElement($dataMoex);
         if (isset($result->row)) {
             foreach ($result->row as $row) {
-                $quote = new Quote();
-                $_classMethods = get_class_methods($quote);
+                $latName = (string) $row->attributes()['LATNAME'];
+                $quote = $em->getRepository('AppBundle:Quote')->findOneBy(['latName' => $latName]);
+                if (null === $quote) {
+                    $quote = new Quote();
+                }
                 foreach ($row->attributes() as $name => $rowAttributes) {
+                    $_classMethods = get_class_methods($quote);
                     $method = 'set' . ucfirst(Quote::$according[$name]);
                     if (in_array($method, $_classMethods)) {
                         $quote->$method((string) $rowAttributes[0]);

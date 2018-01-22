@@ -13,9 +13,8 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-
         $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM AppBundle:Quote a";
+        $dql   = "SELECT quote FROM AppBundle:Quote quote";
         $query = $em->createQuery($dql);
 
         $paginator  = $this->get('knp_paginator');
@@ -30,13 +29,5 @@ class DefaultController extends Controller
             'pagination' => $pagination,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ));
-
-
-
-
-        // replace this example code with whatever you need
-//        return $this->render('default/index.html.twig', [
-//            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-//        ]);
     }
 }
